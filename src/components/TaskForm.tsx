@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "./ui/form";
 import * as z from "zod";
-import { TaskFormType } from "@/types";
 import { Input } from "./ui/input";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
@@ -21,6 +20,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { MultiSelect } from "./ui/multi-select";
+import { owners } from "@/constants";
 import {
   Select,
   SelectContent,
@@ -28,14 +29,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { useForm } from "react-hook-form";
+import { useTasks } from "@/TaskContext";
+import { v4 as uuidv4 } from "uuid";
+import { TaskType } from "@/types";
 
-export default function AddTaskForm({ form }: { form: TaskFormType }) {
+export default function TaskForm({
+  form,
+  task,
+}: {
+  form: ReturnType<typeof useForm<z.infer<typeof taskFormSchema>>>;
+  task?: TaskType;
+}) {
+  const { addTask, editTask } = useTasks();
+  console.log("from task form: ", task);
   const onSubmit = (values: z.infer<typeof taskFormSchema>) => {
-    console.log(values);
+    if (task) {
+      editTask({ ...values, id: task.id, comments: task.comments });
+    } else {
+      const newTask: TaskType = { ...values, id: uuidv4() };
+      addTask(newTask);
+    }
   };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-2">
         <FormField
           control={form.control}
           name="title"
@@ -43,7 +61,7 @@ export default function AddTaskForm({ form }: { form: TaskFormType }) {
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="Title" {...field} />
+                <Input placeholder="Title" {...field} autoFocus />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -79,9 +97,6 @@ export default function AddTaskForm({ form }: { form: TaskFormType }) {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
                     initialFocus
                   />
                 </PopoverContent>
@@ -119,9 +134,6 @@ export default function AddTaskForm({ form }: { form: TaskFormType }) {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
                     initialFocus
                   />
                 </PopoverContent>
@@ -129,32 +141,72 @@ export default function AddTaskForm({ form }: { form: TaskFormType }) {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
-          name="owners"
+          name="status"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Assign Task to</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormLabel>Status</FormLabel>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={task?.status}
+              >
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a user to assign task to" />
+                    <SelectValue placeholder="Select the status of the task" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="Samuel">Samuel</SelectItem>
-                  <SelectItem value="Justice">Justice</SelectItem>
-                  <SelectItem value="Isaac">Isaac</SelectItem>
+                  <SelectItem value="not started">Not Started</SelectItem>
+                  <SelectItem value="in progress">In Progress</SelectItem>
+                  <SelectItem value="completed">Completed</SelectItem>
                 </SelectContent>
               </Select>
-
               <FormMessage />
             </FormItem>
           )}
         />
-
-        <Button type="submit">Save</Button>
+        <FormField
+          control={form.control}
+          name="priority"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Priority</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select the priority of the task" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="low">Low</SelectItem>
+                  <SelectItem value="moderate">Moderate</SelectItem>
+                  <SelectItem value="high">High</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="owners"
+          render={({ field: { ...field } }) => (
+            <FormItem>
+              <FormLabel>Owners</FormLabel>
+              <MultiSelect
+                placeholder="Assign task to"
+                selected={field.value}
+                options={owners || []}
+                {...field}
+              />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="w-full">
+          Save
+        </Button>
       </form>
     </Form>
   );

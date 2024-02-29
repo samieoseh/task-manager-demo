@@ -1,11 +1,11 @@
-import { TaskType } from "./types";
+import { OwnerType, TaskType } from "./types";
 
 export const tasks: TaskType[] = [
   {
     title: "Clear table",
     startDate: new Date(),
     status: "in progress",
-    priority: "high",
+    priority: "low",
     endDate: new Date(),
     owners: "Samuel",
   },
@@ -13,7 +13,7 @@ export const tasks: TaskType[] = [
     title: "Code",
     startDate: new Date(),
     status: "not started",
-    priority: "high",
+    priority: "low",
     endDate: new Date(),
     owners: "Isaac",
   },
@@ -21,7 +21,7 @@ export const tasks: TaskType[] = [
     title: "Clear table",
     startDate: new Date(),
     status: "completed",
-    priority: "high",
+    priority: "moderate",
     endDate: new Date(),
     owners: "Samuel",
   },
@@ -48,5 +48,32 @@ export const tasks: TaskType[] = [
     priority: "high",
     endDate: new Date(),
     owners: "Samuel",
+  },
+];
+
+export const owners: OwnerType[] = [
+  {
+    id: "1",
+    name: "Samuel",
+  },
+  {
+    id: "2",
+    name: "Isaac",
+  },
+  {
+    id: "3",
+    name: "Justice",
+  },
+  {
+    id: "4",
+    name: "Wealth",
+  },
+  {
+    id: "5",
+    name: "Ruth",
+  },
+  {
+    id: "6",
+    name: "Ade",
   },
 ];
