@@ -28,7 +28,7 @@ npm install
 npm run dev
 ```
 
-The application should now be running on http://localhost:3000.
+The application should now be running on http://localhost:5173.
 
 ### Usage
 Add a Task: Click on the "Add Task" button and fill in the task details in the modal form.
