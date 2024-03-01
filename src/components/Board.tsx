@@ -1,7 +1,7 @@
 import { TaskType } from "@/types";
 import ChatIcon from "./icons/chat-icon";
 import AttachIcon from "./icons/attach-icon";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Tooltip,
   TooltipContent,
@@ -28,8 +28,8 @@ import TaskForm from "./TaskForm";
 import useTaskForm from "@/hooks/useTaskForm";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
-import {  useState } from "react";
-import AvatarGroup from "./ui/avatar-group";
+import { useState } from "react";
+// import AvatarGroup from "./ui/avatar-group";
 import DragIcon from "./icons/drag-icon";
 import { DraggableProvided } from "react-beautiful-dnd";
 
@@ -199,14 +199,14 @@ export default function Board({
       </TooltipProvider>
 
       <div className="flex justify-between pt-4">
-        <AvatarGroup max={2}>
-          {task.owners.map((owner: string) => (
-            <Avatar>
+        {/* <AvatarGroup max={2}>
+          {task.owners.map((owner: string, index: number) => (
+            <Avatar key={index}>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
               <AvatarFallback>{owner.slice(0, 1)}</AvatarFallback>
             </Avatar>
           ))}
-        </AvatarGroup>
+        </AvatarGroup> */}
 
         {/* TODO: like icons and files icon*/}
         <div className="flex items-center gap-8">

@@ -21,7 +21,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { MultiSelect } from "./ui/multi-select";
-import { owners } from "@/constants";
+import { owners } from "../constants";
 import {
   Select,
   SelectContent,
