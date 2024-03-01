@@ -2,6 +2,9 @@
 
 This project is a Kanban Board application built with React and TypeScript, featuring a custom `useForm` hook for form management and styled with `shadcn` components. It provides an interactive way to manage tasks in a Kanban-style interface, allowing users to add, edit, and move tasks across different columns representing different stages of a workflow. This project is bootstrapped with Vite for a fast and efficient development experience.
 
+## Screenshot
+![Capture](https://github.com/samieoseh/task-manager-demo/assets/139955427/c07eda13-3103-4b2c-b67e-1e575a30852d)
+
 ## Features
 
 - **Task Management**: Create, edit, and delete tasks.
@@ -55,3 +58,5 @@ Vite - Next Generation Frontend Tooling
 React - A JavaScript library for building user interfaces
 TypeScript - Typed JavaScript at Any Scale
 shadcn - For the UI components
+
+
