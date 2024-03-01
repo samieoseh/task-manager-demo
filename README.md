@@ -40,13 +40,14 @@ Move a Task: Drag and drop tasks across columns to update their status.
 Contributions are welcome! If you have an idea for improvement or have found a bug, please follow these steps:
 
 *Fork the repository.*
+
 Create a new branch (git checkout -b feature/amazing-feature).
 Make your changes.
 Commit your changes (git commit -m 'Add some AmazingFeature').
 Push to the branch (git push origin feature/amazing-feature).
 Open a pull request.
 
-###License
+### License
 Distributed under the MIT License. See LICENSE for more information.
 
 ### Acknowledgments
