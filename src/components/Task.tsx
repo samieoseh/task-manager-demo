@@ -10,7 +10,7 @@ export default function Task({
   index: number;
 }) {
   return (
-    <Draggable draggableId={task.id} key={task.id} index={index}>
+    <Draggable draggableId={task._id} key={task._id} index={index}>
       {(provided) => (
         <div
           className={`  mb-[8px] p-[8px] rounded-md flex items-center`}

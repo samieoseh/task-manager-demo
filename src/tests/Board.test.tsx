@@ -20,7 +20,7 @@ jest.mock('@/hooks/useTaskForm', () => ({
 
 test("renders without crashing", () => {
   const mockTask: TaskType = {
-    id: "1",
+    _id: "1",
     title: "Test Task",
     priority: "low",
     status: "completed",

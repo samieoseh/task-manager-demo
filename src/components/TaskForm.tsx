@@ -42,12 +42,13 @@ export default function TaskForm({
   task?: TaskType;
 }) {
   const { addTask, editTask } = useTasks();
-  console.log("from task form: ", task);
+
   const onSubmit = (values: z.infer<typeof taskFormSchema>) => {
     if (task) {
-      editTask({ ...values, id: task.id, comments: task.comments });
+      console.log(task);
+      editTask({ ...values, _id: task._id, comments: task.comments });
     } else {
-      const newTask: TaskType = { ...values, id: uuidv4() };
+      const newTask: TaskType = { ...values, _id: uuidv4() };
       addTask(newTask);
     }
   };
@@ -147,10 +148,7 @@ export default function TaskForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Status</FormLabel>
-              <Select
-                onValueChange={field.onChange}
-                defaultValue={task?.status}
-              >
+              <Select onValueChange={field.onChange} defaultValue={task ? task.status : field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select the status of the task" />
