@@ -4,6 +4,7 @@ This project is a Kanban Board application built with React and TypeScript, feat
 
 ## Screenshot
 ![Capture](https://github.com/samieoseh/task-manager-demo/assets/139955427/c07eda13-3103-4b2c-b67e-1e575a30852d)
+![Screenshot 2022-12-05 010008](https://github.com/samieoseh/task-manager-demo/assets/139955427/0364c1a9-eabd-4594-bfd8-b8b981448fed)
 
 ## Features
 
