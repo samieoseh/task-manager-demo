@@ -26,6 +26,7 @@ git clone https://github.com/samieoseh/task-manager-demo.git
 cd task-manager-demo
 npm install
 npm run dev
+```
 
 The application should now be running on http://localhost:3000.
 
