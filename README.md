@@ -21,7 +21,7 @@ This project is a Kanban Board application built with React and TypeScript, feat
 
 1. Clone the repository:
 
-```bash
+```js
 git clone https://github.com/samieoseh/task-manager-demo.git
 cd task-manager-demo
 npm install
