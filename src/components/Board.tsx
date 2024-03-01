@@ -1,7 +1,7 @@
 import { TaskType } from "@/types";
 import ChatIcon from "./icons/chat-icon";
 import AttachIcon from "./icons/attach-icon";
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Tooltip,
   TooltipContent,
@@ -29,7 +29,7 @@ import useTaskForm from "@/hooks/useTaskForm";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { useState } from "react";
-// import AvatarGroup from "./ui/avatar-group";
+import AvatarGroup from "./ui/avatar-group";
 import DragIcon from "./icons/drag-icon";
 import { DraggableProvided } from "react-beautiful-dnd";
 
@@ -70,7 +70,7 @@ export default function Board({
   const [comment, setComment] = useState("");
 
   const { form } = useTaskForm(task);
-  const { removeTask, editTask } = useTasks();
+  const { removeTask, editTask, duplicateTask } = useTasks();
 
   const handleSaveComment = () => {
     editTask({ ...task, comments: [...task.comments, comment] });
@@ -155,10 +155,10 @@ export default function Board({
                 <DialogTrigger className="w-full">
                   <MenubarItem>Edit Task</MenubarItem>
                 </DialogTrigger>
-                <MenubarItem onClick={() => removeTask(task.id)}>
+                <MenubarItem onClick={() => removeTask(task._id)}>
                   Delete Task
                 </MenubarItem>
-                <MenubarItem>Duplicate Task</MenubarItem>
+                <MenubarItem onClick={() => duplicateTask(task._id)}>Duplicate Task</MenubarItem>
               </MenubarContent>
             </MenubarMenu>
           </Menubar>
@@ -175,11 +175,12 @@ export default function Board({
       <div className="flex flex-col gap-1 py-8">
         <h1 className="font-bold text-xl">{task.title.toUpperCase()}</h1>
         <p className="text-xs text-[#656565]">
-          {task.startDate.getDate()}{" "}
-          {shortMonthLabels[task.startDate.getMonth()]},
-          {task.startDate.getFullYear()} - {task.endDate.getDate()}{" "}
-          {shortMonthLabels[task.endDate.getMonth()]},
-          {task.endDate.getFullYear()}
+          {new Date(task.startDate).getDate()}{" "}
+          {shortMonthLabels[new Date(task.startDate).getMonth()]},
+          {new Date(task.startDate).getFullYear()} -{" "}
+          {new Date(task.endDate).getDate()}{" "}
+          {shortMonthLabels[new Date(task.endDate).getMonth()]},
+          {new Date(task.endDate).getFullYear()}
         </p>
       </div>
       <TooltipProvider>
@@ -199,14 +200,14 @@ export default function Board({
       </TooltipProvider>
 
       <div className="flex justify-between pt-4">
-        {/* <AvatarGroup max={2}>
+        <AvatarGroup max={2}>
           {task.owners.map((owner: string, index: number) => (
             <Avatar key={index}>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
               <AvatarFallback>{owner.slice(0, 1)}</AvatarFallback>
             </Avatar>
           ))}
-        </AvatarGroup> */}
+        </AvatarGroup>
 
         {/* TODO: like icons and files icon*/}
         <div className="flex items-center gap-8">
@@ -231,8 +232,8 @@ export default function Board({
                   <div className="border w-full"></div>
                   <div>
                     <h2 className="font-bold pb-4">Recent Comments</h2>
-                    {task.comments.map((comment) => (
-                      <div className="py-4 flex items-center gap-4">
+                    {task.comments.map((comment, index) => (
+                      <div className="py-4 flex items-center gap-4" key={index}>
                         <p>{comment}</p>
                       </div>
                     ))}

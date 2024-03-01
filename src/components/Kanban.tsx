@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Column from "./Column";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useTasks } from "@/TaskContext";
+import { KanbanType } from "@/types";
 
-export default function Kanban({ kanbanData }) {
+export default function Kanban({ kanbanData }: {kanbanData: KanbanType}) {
   const { editTask } = useTasks();
   const [data, setData] = useState(kanbanData);
-
   useEffect(() => {
     setData(kanbanData);
   }, [kanbanData]);
@@ -82,16 +82,20 @@ export default function Kanban({ kanbanData }) {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="flex justify-between gap-2">
-        {data.columnOrder.map((columnId: string) => {
-          const column = data.columns[columnId];
-          const tasks = column.taskIds.map(
-            (taskId: string) => data.tasks[taskId]
-          );
-          return <Column key={column.id} column={column} tasks={tasks} />;
-        })}
-      </div>
-    </DragDropContext>
+    <>
+      {data && (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="flex justify-between gap-2">
+            {data.columnOrder.map((columnId: string) => {
+              const column = data.columns[columnId];
+              const tasks = column.taskIds.map(
+                (taskId: string) => data.tasks[taskId]
+              );
+              return <Column key={column.id} column={column} tasks={tasks} />;
+            })}
+          </div>
+        </DragDropContext>
+      )}
+    </>
   );
 }

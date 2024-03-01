@@ -25,7 +25,7 @@ export default function Column({
           >
             <div>
               {tasks.map((task, index) => (
-                <Task task={task} index={index} />
+                <Task task={task} index={index} key={index} />
               ))}
               {provided.placeholder}
             </div>
