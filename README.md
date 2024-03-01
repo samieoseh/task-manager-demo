@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+# React TypeScript Kanban Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a Kanban Board application built with React and TypeScript, featuring a custom `useForm` hook for form management and styled with `shadcn` components. It provides an interactive way to manage tasks in a Kanban-style interface, allowing users to add, edit, and move tasks across different columns representing different stages of a workflow. This project is bootstrapped with Vite for a fast and efficient development experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Task Management**: Create, edit, and delete tasks.
+- **Kanban Board**: Drag and drop tasks across columns to represent their current status.
+- **Form Handling**: Utilize the custom `useForm` hook for managing form states and validations.
+- **Styling**: Beautifully styled using `shadcn` components for a modern and responsive UI.
+- **Type Safety**: Fully implemented in TypeScript for a more reliable codebase.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js (v14 or newer)
+- npm/yarn
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Installation
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/kanban-board.git
