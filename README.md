@@ -2,6 +2,9 @@
 
 This project is a Kanban Board application built with React and TypeScript, featuring a custom `useForm` hook for form management and styled with `shadcn` components. It provides an interactive way to manage tasks in a Kanban-style interface, allowing users to add, edit, and move tasks across different columns representing different stages of a workflow. This project is bootstrapped with Vite for a fast and efficient development experience.
 
+## Live Preview
+https://task-manager-demo-one.vercel.app/
+
 ## Screenshot
 ![Capture](https://github.com/samieoseh/task-manager-demo/assets/139955427/c07eda13-3103-4b2c-b67e-1e575a30852d)
 ![Screenshot 2022-12-05 010008](https://github.com/samieoseh/task-manager-demo/assets/139955427/0364c1a9-eabd-4594-bfd8-b8b981448fed)
