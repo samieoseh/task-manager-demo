@@ -11,7 +11,7 @@ export type TaskContextType = {
   getTasks: (taskId: string | undefined) => AxiosResponse<TaskType[]>;
   addTask: (task: TaskType) => void;
   duplicateTask: (taskId: string) => void;
-  editTask: (task: TaskType) => void;
+  editTask: (task) => void;
   removeTask: (taskId: string) => void;
   selectedFilter: string;
   setSelectedFilter: React.Dispatch<React.SetStateAction<string>>;
