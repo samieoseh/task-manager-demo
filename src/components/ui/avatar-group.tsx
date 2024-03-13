@@ -24,7 +24,7 @@ export default function AvatarGroup({
         <div key={index}>{child}</div>
       ))}
       {hiddenCount > 0 && (
-        <div className="flex items-center justify-center bg-gray-400 text-black h-8 w-8 rounded-full z-10">
+        <div className="flex items-center justify-center bg-gray-400 text-white h-8 w-8 rounded-full z-10 ">
           +{hiddenCount}
         </div>
       )}

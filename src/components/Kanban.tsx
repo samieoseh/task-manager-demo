@@ -4,9 +4,10 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useTasks } from "@/TaskContext";
 import { KanbanType } from "@/types";
 
-export default function Kanban({ kanbanData }: {kanbanData: KanbanType}) {
+export default function Kanban({ kanbanData }: { kanbanData: KanbanType }) {
   const { editTask } = useTasks();
   const [data, setData] = useState(kanbanData);
+
   useEffect(() => {
     setData(kanbanData);
   }, [kanbanData]);
@@ -55,6 +56,7 @@ export default function Kanban({ kanbanData }: {kanbanData: KanbanType}) {
       const destinationTaskIds: string[] = Array.from(
         destinationColumn.taskIds
       );
+
       destinationTaskIds.splice(destination.index, 0, draggableId);
       const newDestinationColumn = {
         ...destinationColumn,
@@ -75,8 +77,9 @@ export default function Kanban({ kanbanData }: {kanbanData: KanbanType}) {
           [newDestinationColumn.id]: newDestinationColumn,
         },
       };
-
-      setData(newState);
+      console.log(newDestinationColumn);
+      console.log("new state: ", newState);
+      setData((prevState) => ({ ...prevState, ...newState }));
       editTask(updatedTask);
     }
   };
