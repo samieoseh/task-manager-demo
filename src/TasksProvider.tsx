@@ -12,7 +12,7 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     const fetchTasks = async () => {
       try {
         const response = await axios.get<TaskType[]>(
-          "http://localhost:8800/tasks/undefined"
+          "https://task-manager-demo-1.onrender.com/tasks/undefined"
         );
         const taskConvertedWithDate = response.data.map((task) => ({
           ...task,
@@ -29,7 +29,7 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const getTasks = async (taskId?: string) => {
-    const url = `http://localhost:8800/tasks/${taskId}`;
+    const url = `https://task-manager-demo-1.onrender.com/tasks/${taskId}`;
     const response: AxiosResponse<TaskType[]> = await axios.get<TaskType[]>(
       url
     );
@@ -41,12 +41,13 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     const startDate = new Date(task.startDate).getTime();
     const endDate = new Date(task.endDate).getTime();
     const updatedTask = { ...task, startDate: startDate, endDate: endDate };
-    const response = await axios.post("http://localhost:8800/tasks", updatedTask);
+    const response = await axios.post("https://task-manager-demo-1.onrender.com/tasks", updatedTask);
     setTasks((prevTasks) => [...prevTasks, response.data]);
   };
 
   const removeTask = async (taskId: string) => {
-    const url = `http://localhost:8800/tasks/${taskId}`;
+
+    const url = `https://task-manager-demo-1.onrender.com/tasks/${taskId}`;
     console.log(url)
     await axios.delete(url);
     setTasks(tasks.filter((task) => task._id !== taskId));
@@ -54,7 +55,7 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
 
   const editTask = async (editedTask: TaskType) => {
     console.log("editing");
-    const url = `http://localhost:8800/tasks/${editedTask._id}`;
+    const url = `https://task-manager-demo-1.onrender.com/tasks/${editedTask._id}`;
     const startDate = new Date(editedTask.startDate).getTime();
     const endDate = new Date(editedTask.endDate).getTime();
     const updatedTask = {
@@ -69,7 +70,7 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const duplicateTask = async (taskId: string) => {
-    const url = `http://localhost:8800/tasks/${taskId}`;
+    const url = `https://task-manager-demo-1.onrender.com/tasks/${taskId}`;
     const response: AxiosResponse<TaskType> = await axios.get<TaskType>(
       url
     );

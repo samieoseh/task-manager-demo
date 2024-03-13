@@ -14,11 +14,11 @@ import * as z from "zod";
 
 export default function Header() {
   const defaultTask: z.infer<typeof taskFormSchema> = {
-    title: "A new task",
+    title: "",
     startDate: new Date(),
     endDate: new Date(),
     priority: "low",
-    status: "in progress",
+    status: "not started",
     owners: [],
     comments: [],
   };
